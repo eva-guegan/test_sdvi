@@ -49,6 +49,20 @@ header nav {
     align-items: stretch;
 }
 
+div.advice-blk {
+    width: 70%;
+    border: 1px solid #ef6213;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background-color: rgba(0, 0, 0, 0.62);
+}
+
+div.advice-blk > a {
+    font-weight: bold;
+    color: #ef902b;
+}
+
 .tp-icone-blk {
     display: flex;
     flex-direction: column;
