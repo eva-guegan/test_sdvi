@@ -5,7 +5,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Service\Dao\PizzeriaDao;
+use App\Repository\PizzeriaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,14 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class PizzeriaController extends AbstractController
 {
     /**
-     * @param PizzeriaDao $pizzeriaDao
      * @Route("/pizzerias")
+     *
+     * @param PizzeriaRepository $pizzeriaRepo
+     *
      * @return Response
      */
-    public function listeAction(PizzeriaDao $pizzeriaDao): Response
+    public function listeAction(PizzeriaRepository $pizzeriaRepo): Response
     {
         // récupération des différentes pizzéria de l'application
-        $pizzerias = $pizzeriaDao->getAllPizzerias();
+        $pizzerias = $pizzeriaRepo->findAll();
 
         return $this->render("Pizzeria/liste.html.twig", [
             "pizzerias" => $pizzerias,

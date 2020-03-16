@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Service\Dao\PizzaDao;
+use App\Repository\PizzaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,14 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class PizzaController extends AbstractController
 {
     /**
-     * @param PizzaDao $pizzaDao
      * @Route("/pizzas")
+     *
+     * @param PizzaRepository $pizzaRepo
+     *
      * @return Response
      */
-    public function listeAction(PizzaDao $pizzaDao): Response
+    public function listeAction(PizzaRepository $pizzaRepo): Response
     {
         // récupération des différentes pizzas
-        $pizzas = $pizzaDao->getAllPizzas();
+        $pizzas = $pizzaRepo->findAll();
 
         return $this->render("Pizza/liste.html.twig", [
             "pizzas" => $pizzas,
@@ -31,11 +33,13 @@ class PizzaController extends AbstractController
     }
 
     /**
-     * @param int $pizzaId
      * @Route(
      *     "/pizzas/detail-{pizzaId}",
      *     requirements={"pizzaId": "\d+"}
      * )
+     *
+     * @param int $pizzaId
+     *
      * @return Response
      */
     public function detailAction(int $pizzaId): Response

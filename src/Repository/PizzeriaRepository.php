@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use App\Entity\Pizzeria;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * Class PizzeriaRepository
@@ -16,20 +16,11 @@ class PizzeriaRepository extends ServiceEntityRepository
 {
     /**
      * PizzeriaRepository constructor.
-     * @param RegistryInterface $registry
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Pizzeria::class);
-    }
-
-    /**
-     * @return array
-     */
-    public function findAll(): array
-    {
-        // exécution de la requête
-        return parent::findAll();
     }
 
     /**

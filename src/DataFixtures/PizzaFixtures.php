@@ -6,10 +6,10 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Ingredient;
 use App\Entity\IngredientPizza;
 use App\Entity\Pizza;
+use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class PizzaFixtures

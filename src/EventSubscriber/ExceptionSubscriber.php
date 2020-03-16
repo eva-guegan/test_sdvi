@@ -6,9 +6,9 @@ namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 /**
  * Class ExceptionSubscriber
@@ -17,15 +17,15 @@ use Symfony\Component\Templating\EngineInterface;
 class ExceptionSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var EngineInterface
+     * @var Environment
      */
     private $twigEngine;
 
     /**
      * ExceptionSubscriber constructor.
-     * @param EngineInterface $twigEngine
+     * @param Environment $twigEngine
      */
-    public function __construct(EngineInterface $twigEngine)
+    public function __construct(Environment $twigEngine)
     {
         $this->twigEngine = $twigEngine;
     }
@@ -39,12 +39,12 @@ class ExceptionSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param GetResponseForExceptionEvent $event
+     * @param ExceptionEvent $event
      */
-    public function handleException(GetResponseForExceptionEvent $event): void
+    public function handleException(ExceptionEvent $event): void
     {
         // récupération de l'exception
-        $exception = $event->getException();
+        $exception = $event->getThrowable();
 
         // création du contenu de la vue correspondante
         $content = $this->twigEngine->render("erreur.html.twig", [

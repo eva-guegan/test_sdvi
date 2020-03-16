@@ -6,7 +6,7 @@ namespace App\Repository;
 
 use App\Entity\IngredientPizza;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * Class IngredientPizzaRepository
@@ -16,9 +16,9 @@ class IngredientPizzaRepository extends ServiceEntityRepository
 {
     /**
      * IngredientPizzaRepository constructor.
-     * @param RegistryInterface $registry
+     * @param ManagerRegistry $registry
      */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, IngredientPizza::class);
     }
