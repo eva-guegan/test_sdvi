@@ -43,11 +43,15 @@ class Pizzeria
 
     /**
      * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Pizzeria", mappedBy="pizzeria_id")
      */
     private $pizzas;
 
     /**
      * @var Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Pizzaiolo", mappedBy="pizzeria")
      */
     private $pizzaiolos;
 
