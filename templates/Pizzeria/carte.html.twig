@@ -1,1 +1,29 @@
+{% extends "base.html.twig" %}
 
+{% block title %}{% endblock %}
+
+{% block titrePage %}{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <td>Pizza</td>
+                <td>Prix</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in detailPizzeria %}
+                <tr>
+                    <td>nom pizza</td>
+                    <td>prix</td>
+                </tr>
+
+                {% else %}
+                <tr>
+                    <td>Pas de boucle</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

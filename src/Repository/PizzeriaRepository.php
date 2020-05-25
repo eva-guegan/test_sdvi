@@ -27,9 +27,15 @@ class PizzeriaRepository extends ServiceEntityRepository
      * @param int $pizzeriaId
      * @return Pizzeria
      */
-    public function findCartePizzeria($pizzeriaId): Pizzeria
+    public function findCartePizzeria(Pizzeria $pizzeriaId): Pizzeria
     {
-        // TODO: implémenter la méthode pour trouver la carte d'une pizzéria
-        throw new \Exception("The method ".__METHOD__." isn't implemented");
+        $qb = $this->createQueryBuilder("c");
+
+        $qb
+            ->where("c.id = :idPizzeria")
+            ->setParameter("idPizzeria", $pizzeriaId)
+        ;
+
+        return $qb->getQuery()->getResult();
     }
 }

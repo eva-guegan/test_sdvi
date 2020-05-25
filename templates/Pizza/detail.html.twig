@@ -5,5 +5,10 @@
 {% block titrePage %}{% endblock %}
 
 {% block body %}
-    Le détail de la pizza sélectionnée
+    {% for detail in detailPizza %}
+        <p>Boucle</p>
+
+    {% else %}
+        <p>Ne rentre pas dans la boucle</p>
+    {% endfor %}
 {% endblock %}

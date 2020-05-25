@@ -31,7 +31,11 @@ class Pizza
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\IngredientPizza", mappedBy="pizza")
+     * @ORM\ManyToMany(targetEntity="App\Entity\IngredientPizza")
+     * @ORM\JoinTable(name="pizza_ingredientPizza",
+     *      joinColumns={@ORM\JoinColumn(name="id_pizza", referencedColumnName="id_pizza")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="id_ingredient_pizza", referencedColumnName="id_ingredient_pizza", unique=true)}
+     *      )
      */
     private $quantiteIngredients;
 
@@ -107,5 +111,14 @@ class Pizza
     public function getQuantiteIngredients(): Collection
     {
         return $this->quantiteIngredients;
+    }
+
+    public function addQuantiteIngredient(IngredientPizza $quantiteIngredient): self
+    {
+        if (!$this->quantiteIngredients->contains($quantiteIngredient)) {
+            $this->quantiteIngredients[] = $quantiteIngredient;
+        }
+
+        return $this;
     }
 }
