@@ -41,7 +41,7 @@ class PizzaController extends AbstractController
      * @param int $pizzaId
      *
      * @return Response
-     * 
+     *
      * à enlever :
      * @throws \Exception
      */
