@@ -2,13 +2,20 @@
 
 {% block title %}{% endblock %}
 
-{% block titrePage %}{% endblock %}
+{% block titrePage %}la pizza {{ detailPizza.nom }}{% endblock %}
 
 {% block body %}
-    {% for detail in detailPizza %}
-        <p>Boucle</p>
+    <p>Prix de fabrication = (qte en kg * cout au kg) + (qte en kg * cout au kg) + ... </p>
 
-    {% else %}
-        <p>Ne rentre pas dans la boucle</p>
-    {% endfor %}
+    <p>
+        {% for ing in detailPizza.quantiteIngredients %}
+            {{ ing.ingredient.cout }} * {{ ing.quantite }} +
+        {% endfor %}
+    </p>
+
+    <p>Ingrédients :
+        {% for ing in detailPizza.quantiteIngredients %}
+            {{ ing.ingredient.nom }},
+        {% endfor %}
+    </p>
 {% endblock %}

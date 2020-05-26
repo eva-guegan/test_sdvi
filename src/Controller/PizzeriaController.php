@@ -39,6 +39,7 @@ class PizzeriaController extends AbstractController
      *     "/pizzerias/carte-{pizzeriaId}",
      *     requirements={"pizzeriaId": "\d+"}
      * )
+     *
      * @return Response
      */
     public function detailAction($pizzeriaId, PizzeriaRepository $pizzeriaRepo): Response

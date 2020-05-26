@@ -27,7 +27,7 @@ class PizzeriaRepository extends ServiceEntityRepository
      * @param int $pizzeriaId
      * @return Pizzeria
      */
-    public function findCartePizzeria(Pizzeria $pizzeriaId): Pizzeria
+    public function findCartePizzeria($pizzeriaId) : Pizzeria
     {
         $qb = $this->createQueryBuilder("c");
 
@@ -36,6 +36,6 @@ class PizzeriaRepository extends ServiceEntityRepository
             ->setParameter("idPizzeria", $pizzeriaId)
         ;
 
-        return $qb->getQuery()->getResult();
+        return $qb->getQuery()->getSingleResult();
     }
 }

@@ -41,9 +41,6 @@ class PizzaController extends AbstractController
      * @param int $pizzaId
      *
      * @return Response
-     *
-     * à enlever :
-     * @throws \Exception
      */
     public function detailAction(int $pizzaId, PizzaRepository $pizzaRepo): Response
     {

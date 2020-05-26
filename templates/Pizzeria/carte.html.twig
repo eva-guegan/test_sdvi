@@ -2,9 +2,10 @@
 
 {% block title %}{% endblock %}
 
-{% block titrePage %}{% endblock %}
+{% block titrePage %}La carte de "{{ detailPizzeria.nom }}" {% endblock %}
 
 {% block body %}
+    <p>Marge de la pizzeria : {{ detailPizzeria.marge }}</p>
     <table>
         <thead>
             <tr>
@@ -13,15 +14,15 @@
             </tr>
         </thead>
         <tbody>
-            {% for detail in detailPizzeria %}
+            {% for pizzas in detailPizzeria.pizzas %}
                 <tr>
-                    <td>nom pizza</td>
-                    <td>prix</td>
+                    <td>{{ pizzas.nom }}</td>
+                    <td>... €</td>
                 </tr>
 
-                {% else %}
+            {% else %}
                 <tr>
-                    <td>Pas de boucle</td>
+                    <td>Désolé, nous n'avons pas de pizzas disponible pour le moment</td>
                 </tr>
             {% endfor %}
         </tbody>
