@@ -5,13 +5,7 @@
 {% block titrePage %}la pizza {{ detailPizza.nom }}{% endblock %}
 
 {% block body %}
-    <p>Prix de fabrication = (qte en kg * cout au kg) + (qte en kg * cout au kg) + ... </p>
-
-    <p>
-        {% for ing in detailPizza.quantiteIngredients %}
-            {{ ing.ingredient.cout }} * {{ ing.quantite }} +
-        {% endfor %}
-    </p>
+    <p>Prix de fabrication : {{ (total)|number_format(2, '.', ' ') }} € </p>
 
     <p>Ingrédients :
         {% for ing in detailPizza.quantiteIngredients %}
