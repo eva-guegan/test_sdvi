@@ -47,15 +47,13 @@ class PizzaController extends AbstractController
     {
         $detailPizza = $pizzaRepo->findPizzaAvecDetailComplet($pizzaId);
 
-        foreach ($detailPizza as $item) {
-            $item['quantite'];
-        }
+        $tabInstance[] = $detailPizza->getQuantiteIngredients();
 
-        $quantite = [80, 105, 45, 60, 30, 48, 105];
-        $prix = [3.7, 10.72, 7.9, 6.3, 2.68, 12.38, 12.32];
+        for ($i=0, $size = count($tabInstance); $i<$size; $i++) {
+            $quantite[] = $tabInstance[$i]; // ici pour utiliser getQuantite
+            $prix[] = $tabInstance[$i]; // ici pour utiliser getCout
 
-        for ($i=0, $size = count($quantite); $i<$size; $i++) {
-            $qteEnKg[] = $quantite[$i] * 0.001;
+            $qteEnKg[] = IngredientPizza::convertirGrammeEnKilo($quantite[$i]);
             $calcul[] = $qteEnKg[$i] * $prix[$i];
         }
 
@@ -63,7 +61,7 @@ class PizzaController extends AbstractController
 
         return $this->render("Pizza/detail.html.twig", [
             "detailPizza" => $detailPizza,
-            "calcul" => $calcul,
+//            "test" => $test,
             "total" => $total
         ]);
     }

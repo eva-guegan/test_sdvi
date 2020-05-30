@@ -5,6 +5,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\IngredientPizza;
 use App\Repository\PizzeriaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,8 +47,17 @@ class PizzeriaController extends AbstractController
     {
         $detailPizzeria = $pizzeriaRepo->findCartePizzeria($pizzeriaId);
 
+        $marge = $detailPizzeria->getMarge();
+        $pizzas[] = $detailPizzeria->getPizzas();
+
+        for ($i=0, $size = count($pizzas); $i<$size; $i++) {
+//            $prixPizza[] = appel de la fonction detailAction dans PizzaController
+//            $total[] = $marge + $prixPizza[$i];
+        }
+
         return $this->render("Pizzeria/carte.html.twig", [
-        "detailPizzeria" => $detailPizzeria,
+            "detailPizzeria" => $detailPizzeria,
+//            "total" => $total,
         ]);
     }
 }
