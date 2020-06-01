@@ -32,17 +32,17 @@
                 <span>Pizzas</span>
             </a>
 
-            {#{% if app.user %}#}
-                {#<a href="{{ path("app_deconnexionn") }}" class="tp-icone-blk">#}
-                    {#<i class="fa fa-cutlery" aria-hidden="true"></i>#}
-                    {#<span>Déconnexion</span>#}
-                {#</a>#}
-            {#{% else %}#}
-                {#<a href="{{ path("app_connexionn") }}" class="tp-icone-blk">#}
-                    {#<i class="fa fa-cutlery" aria-hidden="true"></i>#}
-                    {#<span>Connexion</span>#}
-                {#</a>#}
-            {#{% endif %}#}
+            {% if app.user %}
+                <a href="{{ path("app_deconnexion") }}" class="tp-icone-blk">
+                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    <span>Déconnexion</span>
+                </a>
+            {% else %}
+                <a href="{{ path("app_connexion") }}" class="tp-icone-blk">
+                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                    <span>Connexion</span>
+                </a>
+            {% endif %}
         </nav>
     </header>
 

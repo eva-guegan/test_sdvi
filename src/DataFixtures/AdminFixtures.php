@@ -24,7 +24,6 @@ class AdminFixtures extends Fixture
             $admin,
             'password1'
         ));
-        $admin->setRoles(1);
         $manager->persist($admin);
 
         $admin2 = new Admin();
@@ -33,7 +32,6 @@ class AdminFixtures extends Fixture
             $admin2,
             'password2'
         ));
-        $admin2->setRoles(1);
         $manager->persist($admin2);
 
         $manager->flush();
