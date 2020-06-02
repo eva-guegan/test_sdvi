@@ -1,43 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Test des pizzeria{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
-    <script src="https://use.fontawesome.com/7e065ddf26.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Exo|Indie+Flower" rel="stylesheet">
-    {{ encore_entry_link_tags('app') }}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Exo|Indie+Flower" rel="stylesheet">
+
+        {{ encore_entry_link_tags('app') }}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% endblock %}
 </head>
 <body>
-<header class="container">
-    <h1><span class="tp-ita-1">Les pizzé</span><span class="tp-ita-2">rias de no</span><span class="tp-ita-3">s régions</span></h1>
-    <nav>
-        <a href="{{ path("app_index_index") }}" class="tp-icone-blk">
-            <i class="fa fa-home" aria-hidden="true"></i>
-            <span>Menu</span>
-        </a>
-        <a href="{{ path("app_pizzeria_liste") }}" class="tp-icone-blk">
-            <i class="fa fa-list" aria-hidden="true"></i>
-            <span>Pizzérias</span>
-        </a>
-        <a href="{{ path("app_pizzaiolo_disponibles") }}" class="tp-icone-blk">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            <span>Pizzaïolos</span>
-        </a>
-        <a href="{{ path("app_pizza_liste") }}" class="tp-icone-blk">
-            <i class="fa fa-cutlery" aria-hidden="true"></i>
-            <span>Pizzas</span>
-        </a>
-    </nav>
-</header>
-<div class="container tp-main">
-    <h2>{% block titrePage %}{% endblock %}</h2>
+    <header class="container">
+        <h1><span class="tp-ita-1">Les pizzé</span><span class="tp-ita-2">rias de no</span><span class="tp-ita-3">s régions</span></h1>
+        <nav>
+            <a href="{{ path("app_index_index") }}" class="tp-icone-blk">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                <span>Menu</span>
+            </a>
+            <a href="{{ path("app_pizzeria_liste") }}" class="tp-icone-blk">
+                <i class="fa fa-list" aria-hidden="true"></i>
+                <span>Pizzérias</span>
+            </a>
+            <a href="{{ path("app_pizzaiolo_disponibles") }}" class="tp-icone-blk">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <span>Pizzaïolos</span>
+            </a>
+            <a href="{{ path("app_pizza_liste") }}" class="tp-icone-blk">
+                <i class="fa fa-cutlery" aria-hidden="true"></i>
+                <span>Pizzas</span>
+            </a>
 
-    <div class="tp-main-body">
-        {% block body %}{% endblock %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path("app_admin") }}" class="tp-icone-blk">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <span>Administration</span>
+                </a>
+            {% endif %}
+
+            {% if app.user %}
+                <a href="{{ path("app_deconnexion") }}" class="tp-icone-blk">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>Déconnexion</span>
+                </a>
+            {% else %}
+                <a href="{{ path("app_connexion") }}" class="tp-icone-blk">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <span>Connexion</span>
+                </a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container tp-main">
+        <h2>{% block titrePage %}{% endblock %}</h2>
+
+        <div class="tp-main-body">
+            {% block body %}{% endblock %}
+        </div>
     </div>
-</div>
-{% block javascripts %}{% endblock %}
+
+    {% block javascripts %}
+        <script src="https://use.fontawesome.com/7e065ddf26.js"></script>
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 </body>
 </html>

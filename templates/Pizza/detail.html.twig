@@ -2,8 +2,16 @@
 
 {% block title %}{% endblock %}
 
-{% block titrePage %}{% endblock %}
+{% block titrePage %}la pizza {{ detailPizza.nom }}{% endblock %}
 
 {% block body %}
-    Le détail de la pizza sélectionnée
+    <p>Prix de fabrication : {{ (total)|number_format(2, '.', ' ') }} € </p>
+
+    {#{{ dump(test) }}#}
+
+    <p>Ingrédients :
+        {% for ing in detailPizza.quantiteIngredients %}
+            {{ ing.ingredient.nom }},
+        {% endfor %}
+    </p>
 {% endblock %}

@@ -1,1 +1,30 @@
+{% extends "base.html.twig" %}
 
+{% block title %}{% endblock %}
+
+{% block titrePage %}La carte de "{{ detailPizzeria.nom }}" {% endblock %}
+
+{% block body %}
+
+    <table>
+        <thead>
+            <tr>
+                <td>Pizzas</td>
+                <td>Prix</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pizzas in detailPizzeria.pizzas %}
+                <tr>
+                    <td>{{ pizzas.nom }}</td>
+                    <td>... €</td>
+                </tr>
+
+            {% else %}
+                <tr>
+                    <td>Désolé, nous n'avons pas de pizzas disponible pour le moment</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

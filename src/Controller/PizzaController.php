@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
+use App\Entity\IngredientPizza;
 use App\Repository\PizzaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,8 +43,26 @@ class PizzaController extends AbstractController
      *
      * @return Response
      */
-    public function detailAction(int $pizzaId): Response
+    public function detailAction(int $pizzaId, PizzaRepository $pizzaRepo): Response
     {
-        return $this->render("Pizza/detail.html.twig");
+        $detailPizza = $pizzaRepo->findPizzaAvecDetailComplet($pizzaId);
+
+        $tabInstance[] = $detailPizza->getQuantiteIngredients();
+
+        for ($i=0, $size = count($tabInstance); $i<$size; $i++) {
+            $quantite[] = $tabInstance[$i]; // ici pour utiliser getQuantite
+            $prix[] = $tabInstance[$i]; // ici pour utiliser getCout
+
+            $qteEnKg[] = IngredientPizza::convertirGrammeEnKilo($quantite[$i]);
+            $calcul[] = $qteEnKg[$i] * $prix[$i];
+        }
+
+        $total = array_sum($calcul);
+
+        return $this->render("Pizza/detail.html.twig", [
+            "detailPizza" => $detailPizza,
+//            "test" => $test,
+            "total" => $total
+        ]);
     }
 }

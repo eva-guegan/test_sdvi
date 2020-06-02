@@ -1,6 +1,8 @@
 {
     "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.10.1",
         "@symfony/webpack-encore": "*",
+        "jquery": "^3.5.1",
         "vue": "2.6.*",
         "vue-loader": "15.9.*",
         "vue-template-compiler": "2.6.*",
